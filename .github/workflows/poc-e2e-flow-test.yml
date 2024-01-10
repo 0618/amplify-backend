@@ -6,7 +6,7 @@ on: # TODO: need to change the trigger
   push:
     branches:
       - poc/package-manager-support
-      - poc/pms-deploy-v2
+      - poc/pms-deploy-v2-fork
   pull_request:
     branches:
       - poc/package-manager-support

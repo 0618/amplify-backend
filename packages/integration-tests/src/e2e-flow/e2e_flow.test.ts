@@ -330,7 +330,11 @@ void describe('amplify', { concurrency: concurrency }, () => {
           '--context',
           `amplify-backend-type=sandbox`,
           '--app',
-          "'npx tsx amplify/backend.ts'",
+          `'${
+            packageManagerExecutable === 'npm'
+              ? 'npx'
+              : packageManagerExecutable
+          } tsx amplify/backend.ts'`,
           '--quiet',
         ],
         {

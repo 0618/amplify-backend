@@ -5,5 +5,6 @@ export const storageOutputSchema = z.object({
   payload: z.object({
     bucketName: z.string(),
     storageRegion: z.string(),
+    storageAccessKeyId: z.string(),
   }),
 });

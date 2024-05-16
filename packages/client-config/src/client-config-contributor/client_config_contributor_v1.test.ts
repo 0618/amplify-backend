@@ -375,6 +375,7 @@ void describe('storage client config contributor v1', () => {
           payload: {
             bucketName: 'testBucketName',
             storageRegion: 'testRegion',
+            storageAccessKeyId: 'storageAccessKeyId',
           },
         },
       }),

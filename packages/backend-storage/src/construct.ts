@@ -154,6 +154,7 @@ export class AmplifyStorage
       payload: {
         storageRegion: Stack.of(this).region,
         bucketName: this.resources.bucket.bucketName,
+        storageAccessKeyId: 'storageAccessKeyId',
       },
     });
   };

@@ -216,6 +216,7 @@ export interface AWSAmplifyBackendOutputs {
   storage?: {
     aws_region: AwsRegion;
     bucket_name: string;
+    storageAccessKeyId: string;
   };
   /**
    * Outputs generated from backend.addOutput({ custom: <config> })

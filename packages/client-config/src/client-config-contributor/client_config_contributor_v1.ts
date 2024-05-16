@@ -235,6 +235,7 @@ export class StorageClientConfigContributor implements ClientConfigContributor {
     config.storage = {
       aws_region: storageOutput.payload.storageRegion,
       bucket_name: storageOutput.payload.bucketName,
+      storageAccessKeyId: storageOutput.payload.storageAccessKeyId,
     };
 
     return config;

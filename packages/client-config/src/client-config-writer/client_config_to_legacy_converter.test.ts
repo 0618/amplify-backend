@@ -254,6 +254,7 @@ void describe('ClientConfigLegacyConverter', () => {
       storage: {
         aws_region: 'testRegion',
         bucket_name: 'testBucket',
+        storageAccessKeyId: 'storageAccessKeyId',
       },
     };
 

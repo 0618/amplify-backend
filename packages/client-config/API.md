@@ -135,6 +135,7 @@ interface AWSAmplifyBackendOutputs {
     storage?: {
         aws_region: AwsRegion;
         bucket_name: string;
+        storageAccessKeyId: string;
     };
     version: '1';
 }

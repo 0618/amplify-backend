@@ -243,5 +243,5 @@ export interface AmazonLocationServiceConfig {
 export interface AmplifyStorageBucket {
   bucket_name: string;
   friendly_name: string;
-  isDefault?: string;
+  is_default?: string;
 }

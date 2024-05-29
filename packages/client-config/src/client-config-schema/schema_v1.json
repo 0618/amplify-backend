@@ -413,7 +413,7 @@
         "friendly_name": {
           "type": "string"
         },
-        "isDefault": {
+        "is_default": {
           "type": "string"
         }
       },

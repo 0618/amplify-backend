@@ -29,7 +29,7 @@ interface AmplifyStorageBucket {
     // (undocumented)
     friendly_name: string;
     // (undocumented)
-    isDefault?: string;
+    is_default?: string;
 }
 
 // @public (undocumented)

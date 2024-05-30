@@ -230,11 +230,15 @@ export class StorageClientConfigContributor implements ClientConfigContributor {
     if (storageOutput === undefined) {
       return {};
     }
+    const { storageRegion, bucketName, friendlyName, allBuckets } =
+      storageOutput.payload;
     const config: Partial<clientConfigTypesV1.AWSAmplifyBackendOutputs> = {};
 
     config.storage = {
-      aws_region: storageOutput.payload.storageRegion,
-      bucket_name: storageOutput.payload.bucketName,
+      aws_region: storageRegion,
+      bucket_name: bucketName,
+      ...(friendlyName && { friendly_name: friendlyName }),
+      ...(allBuckets && { all_buckets: allBuckets }),
     };
 
     return config;

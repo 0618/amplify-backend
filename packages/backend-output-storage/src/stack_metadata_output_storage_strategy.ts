@@ -1,6 +1,6 @@
 import {
-  BackendOutputEntry,
   BackendOutputStorageStrategy,
+  StorageOutputEntry,
 } from '@aws-amplify/plugin-types';
 import { CfnOutput, Lazy, Stack } from 'aws-cdk-lib';
 
@@ -12,7 +12,7 @@ type OutputKey = string;
  * Implementation of BackendOutputStorageStrategy that stores config data in stack metadata and outputs
  */
 export class StackMetadataBackendOutputStorageStrategy
-  implements BackendOutputStorageStrategy<BackendOutputEntry>
+  implements BackendOutputStorageStrategy<StorageOutputEntry>
 {
   private lazyListValueMap: Map<MetadataKey, Map<OutputKey, string[]>> =
     new Map();
@@ -29,11 +29,20 @@ export class StackMetadataBackendOutputStorageStrategy
    */
   addBackendOutputEntry = (
     keyName: string,
-    backendOutputEntry: BackendOutputEntry
+    backendOutputEntry: StorageOutputEntry
   ): void => {
     // add all the data values as stack outputs
     Object.entries(backendOutputEntry.payload).forEach(([key, value]) => {
-      new CfnOutput(this.stack, key, { value });
+      if (Array.isArray(value)) {
+        // if the value is an array of buckets, iterate through the array and add each element as a stack output
+        value.forEach((bucket) =>
+          Object.entries(bucket).forEach(([childKey, childValue]) => {
+            new CfnOutput(this.stack, childKey, { value: childValue });
+          })
+        );
+      } else {
+        new CfnOutput(this.stack, key, { value });
+      }
     });
 
     this.stack.addMetadata(keyName, {
@@ -47,7 +56,7 @@ export class StackMetadataBackendOutputStorageStrategy
    */
   appendToBackendOutputList = (
     keyName: string,
-    backendOutputEntry: BackendOutputEntry
+    backendOutputEntry: StorageOutputEntry
   ): void => {
     const version = backendOutputEntry.version;
     let listsMap = this.lazyListValueMap.get(keyName);
@@ -78,9 +87,9 @@ export class StackMetadataBackendOutputStorageStrategy
       let outputList = listsMap.get(listName);
 
       if (outputList) {
-        outputList.push(value);
+        outputList.push(value.toString());
       } else {
-        outputList = [value];
+        outputList = [value.toString()];
         listsMap.set(listName, outputList);
 
         new CfnOutput(this.stack, listName, {

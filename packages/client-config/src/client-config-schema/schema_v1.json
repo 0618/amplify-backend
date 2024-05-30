@@ -414,7 +414,7 @@
           "type": "string"
         },
         "is_default": {
-          "type": "string"
+          "type": "boolean"
         }
       },
       "required": ["bucket_name", "friendly_name"]

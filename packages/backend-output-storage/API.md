@@ -6,11 +6,11 @@
 
 /// <reference types="node" />
 
-import { BackendOutputEntry } from '@aws-amplify/plugin-types';
 import { BackendOutputStorageStrategy } from '@aws-amplify/plugin-types';
 import * as _os from 'os';
 import { PackageJsonReader } from '@aws-amplify/platform-core';
 import { Stack } from 'aws-cdk-lib';
+import { StorageOutputEntry } from '@aws-amplify/plugin-types';
 
 // @public (undocumented)
 export type AttributionMetadata = {
@@ -34,10 +34,10 @@ export type DeploymentEngineType = 'AmplifyPipelineDeploy' | 'AmplifySandbox' | 
 export type Platform = 'Mac' | 'Windows' | 'Linux' | 'Other';
 
 // @public
-export class StackMetadataBackendOutputStorageStrategy implements BackendOutputStorageStrategy<BackendOutputEntry> {
+export class StackMetadataBackendOutputStorageStrategy implements BackendOutputStorageStrategy<StorageOutputEntry> {
     constructor(stack: Stack);
-    addBackendOutputEntry: (keyName: string, backendOutputEntry: BackendOutputEntry) => void;
-    appendToBackendOutputList: (keyName: string, backendOutputEntry: BackendOutputEntry) => void;
+    addBackendOutputEntry: (keyName: string, backendOutputEntry: StorageOutputEntry) => void;
+    appendToBackendOutputList: (keyName: string, backendOutputEntry: StorageOutputEntry) => void;
 }
 
 // (No @packageDocumentation comment for this package)

@@ -275,24 +275,62 @@ export const unifiedBackendOutputSchema: z.ZodObject<{
         payload: z.ZodObject<{
             bucketName: z.ZodString;
             storageRegion: z.ZodString;
+            friendlyName: z.ZodOptional<z.ZodString>;
+            allBuckets: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                bucket_name: z.ZodString;
+                friendly_name: z.ZodString;
+                is_default: z.ZodOptional<z.ZodBoolean>;
+            }, "strip", z.ZodTypeAny, {
+                bucket_name: string;
+                friendly_name: string;
+                is_default?: boolean | undefined;
+            }, {
+                bucket_name: string;
+                friendly_name: string;
+                is_default?: boolean | undefined;
+            }>, "many">>;
         }, "strip", z.ZodTypeAny, {
             bucketName: string;
             storageRegion: string;
+            friendlyName?: string | undefined;
+            allBuckets?: {
+                bucket_name: string;
+                friendly_name: string;
+                is_default?: boolean | undefined;
+            }[] | undefined;
         }, {
             bucketName: string;
             storageRegion: string;
+            friendlyName?: string | undefined;
+            allBuckets?: {
+                bucket_name: string;
+                friendly_name: string;
+                is_default?: boolean | undefined;
+            }[] | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         version: "1";
         payload: {
             bucketName: string;
             storageRegion: string;
+            friendlyName?: string | undefined;
+            allBuckets?: {
+                bucket_name: string;
+                friendly_name: string;
+                is_default?: boolean | undefined;
+            }[] | undefined;
         };
     }, {
         version: "1";
         payload: {
             bucketName: string;
             storageRegion: string;
+            friendlyName?: string | undefined;
+            allBuckets?: {
+                bucket_name: string;
+                friendly_name: string;
+                is_default?: boolean | undefined;
+            }[] | undefined;
         };
     }>]>>;
     "AWS::Amplify::Custom": z.ZodOptional<z.ZodDiscriminatedUnion<"version", [z.ZodObject<{
@@ -391,6 +429,12 @@ export const unifiedBackendOutputSchema: z.ZodObject<{
         payload: {
             bucketName: string;
             storageRegion: string;
+            friendlyName?: string | undefined;
+            allBuckets?: {
+                bucket_name: string;
+                friendly_name: string;
+                is_default?: boolean | undefined;
+            }[] | undefined;
         };
     } | undefined;
     "AWS::Amplify::Function"?: {
@@ -455,6 +499,12 @@ export const unifiedBackendOutputSchema: z.ZodObject<{
         payload: {
             bucketName: string;
             storageRegion: string;
+            friendlyName?: string | undefined;
+            allBuckets?: {
+                bucket_name: string;
+                friendly_name: string;
+                is_default?: boolean | undefined;
+            }[] | undefined;
         };
     } | undefined;
     "AWS::Amplify::Function"?: {
@@ -684,24 +734,62 @@ export const versionedStorageOutputSchema: z.ZodDiscriminatedUnion<"version", [z
     payload: z.ZodObject<{
         bucketName: z.ZodString;
         storageRegion: z.ZodString;
+        friendlyName: z.ZodOptional<z.ZodString>;
+        allBuckets: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            bucket_name: z.ZodString;
+            friendly_name: z.ZodString;
+            is_default: z.ZodOptional<z.ZodBoolean>;
+        }, "strip", z.ZodTypeAny, {
+            bucket_name: string;
+            friendly_name: string;
+            is_default?: boolean | undefined;
+        }, {
+            bucket_name: string;
+            friendly_name: string;
+            is_default?: boolean | undefined;
+        }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         bucketName: string;
         storageRegion: string;
+        friendlyName?: string | undefined;
+        allBuckets?: {
+            bucket_name: string;
+            friendly_name: string;
+            is_default?: boolean | undefined;
+        }[] | undefined;
     }, {
         bucketName: string;
         storageRegion: string;
+        friendlyName?: string | undefined;
+        allBuckets?: {
+            bucket_name: string;
+            friendly_name: string;
+            is_default?: boolean | undefined;
+        }[] | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     version: "1";
     payload: {
         bucketName: string;
         storageRegion: string;
+        friendlyName?: string | undefined;
+        allBuckets?: {
+            bucket_name: string;
+            friendly_name: string;
+            is_default?: boolean | undefined;
+        }[] | undefined;
     };
 }, {
     version: "1";
     payload: {
         bucketName: string;
         storageRegion: string;
+        friendlyName?: string | undefined;
+        allBuckets?: {
+            bucket_name: string;
+            friendly_name: string;
+            is_default?: boolean | undefined;
+        }[] | undefined;
     };
 }>]>;
 

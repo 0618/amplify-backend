@@ -88,7 +88,7 @@ export type BackendOutputRetrievalStrategy = {
 };
 
 // @public
-export type BackendOutputStorageStrategy<T extends BackendOutputEntry> = {
+export type BackendOutputStorageStrategy<T extends StorageOutputEntry> = {
     addBackendOutputEntry: (keyName: string, backendOutputEntry: T) => void;
     appendToBackendOutputList: (keyName: string, backendOutputEntry: T) => void;
 };
@@ -230,6 +230,12 @@ export type SsmEnvironmentEntry = {
 // @public (undocumented)
 export type StableBackendIdentifiers = {
     getStableBackendHash: () => string;
+};
+
+// @public (undocumented)
+export type StorageOutputEntry<T extends Record<string, string | object[]> = Record<string, string | object[]>> = {
+    readonly version: string;
+    readonly payload: T;
 };
 
 // (No @packageDocumentation comment for this package)

@@ -74,7 +74,7 @@ void describe('AmplifyStorageFactory', () => {
     const storageConstruct = storageFactory.getInstance(getInstanceProps);
 
     const template = Template.fromStack(
-      Stack.of(storageConstruct.resources.bucket)
+      Stack.of(storageConstruct.resources[0].bucket)
     );
 
     template.resourceCountIs('AWS::S3::Bucket', 1);

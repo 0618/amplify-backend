@@ -66,7 +66,7 @@ export class StorageContainerEntryGenerator
     const ssmEnvironmentEntries =
       ssmEnvironmentEntriesGenerator.generateSsmEnvironmentEntries({
         [`${this.props.name}_BUCKET_NAME`]:
-          amplifyStorage.resources.bucket.bucketName,
+          amplifyStorage.resources[0].bucket.bucketName,
       });
 
     // we pass the access definition along with other dependencies to the storageAccessOrchestrator
@@ -75,7 +75,7 @@ export class StorageContainerEntryGenerator
         this.props.access,
         this.getInstanceProps,
         ssmEnvironmentEntries,
-        new StorageAccessPolicyFactory(amplifyStorage.resources.bucket)
+        new StorageAccessPolicyFactory(amplifyStorage.resources[0].bucket)
       );
 
     // the orchestrator generates policies according to the accessDefinition and attaches the policies to appropriate roles

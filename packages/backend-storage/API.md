@@ -81,7 +81,7 @@ export type StorageResources = {
     cfnResources: {
         cfnBucket: CfnBucket;
     };
-};
+}[];
 
 // (No @packageDocumentation comment for this package)
 

@@ -68,7 +68,7 @@ export type StorageResources = {
   cfnResources: {
     cfnBucket: CfnBucket;
   };
-}[];
+};
 
 /**
  * Amplify Storage CDK Construct
@@ -112,29 +112,14 @@ export class AmplifyStorage
       removalPolicy: RemovalPolicy.DESTROY,
     };
 
-    const bucket = new Bucket(this, 'Bucket', {
-      ...bucketProps,
-      enforceSSL: true,
-    });
-    const bucketTwo = new Bucket(this, 'Bucket', {
-      ...bucketProps,
-      enforceSSL: true,
-    });
+    const bucket = new Bucket(this, 'Bucket', bucketProps);
 
-    this.resources = [
-      {
-        bucket,
-        cfnResources: {
-          cfnBucket: bucket.node.findChild('Resource') as CfnBucket,
-        },
+    this.resources = {
+      bucket,
+      cfnResources: {
+        cfnBucket: bucket.node.findChild('Resource') as CfnBucket,
       },
-      {
-        bucket: bucketTwo,
-        cfnResources: {
-          cfnBucket: bucketTwo.node.findChild('Resource') as CfnBucket,
-        },
-      },
-    ];
+    };
 
     this.storeOutput(props.outputStorageStrategy);
 
@@ -152,7 +137,7 @@ export class AmplifyStorage
    */
   addTrigger = (events: EventType[], handler: IFunction): void => {
     handler.addEventSource(
-      new S3EventSourceV2(this.resources[0].bucket, { events })
+      new S3EventSourceV2(this.resources.bucket, { events })
     );
   };
 
@@ -168,7 +153,7 @@ export class AmplifyStorage
       version: '1',
       payload: {
         storageRegion: Stack.of(this).region,
-        bucketName: this.resources[0].bucket.bucketName,
+        bucketName: this.resources.bucket.bucketName,
       },
     });
   };

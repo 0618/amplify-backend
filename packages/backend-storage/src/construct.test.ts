@@ -148,7 +148,7 @@ void describe('AmplifyStorage', () => {
       const stack = new Stack(app);
 
       const bucket = new AmplifyStorage(stack, 'test', { name: 'testName' });
-      bucket.resources[0].cfnResources.cfnBucket.accelerateConfiguration = {
+      bucket.resources.cfnResources.cfnBucket.accelerateConfiguration = {
         accelerationStatus: 'Enabled',
       };
 

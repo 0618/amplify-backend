@@ -38,6 +38,12 @@ export class StorageContainerEntryGenerator
       outputStorageStrategy: this.getInstanceProps.outputStorageStrategy as any,
     });
 
+    new AmplifyStorage(scope, 'PoC0604', {
+      ...this.props,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      outputStorageStrategy: this.getInstanceProps.outputStorageStrategy as any,
+    });
+
     Tags.of(amplifyStorage).add(TagName.FRIENDLY_NAME, this.props.name);
 
     Object.entries(this.props.triggers || {}).forEach(

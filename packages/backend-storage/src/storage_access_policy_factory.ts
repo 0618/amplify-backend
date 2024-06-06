@@ -20,7 +20,7 @@ export class StorageAccessPolicyFactory {
   // private readonly namePrefix = 'storageAccess';
   private readonly stack: Stack;
 
-  private policyCount = 1;
+  // private policyCount = 1;
 
   /**
    * Instantiate with the bucket to generate policies for
@@ -65,7 +65,9 @@ export class StorageAccessPolicyFactory {
 
     return new Policy(
       this.stack,
-      `${this.bucket.bucketName.slice(0, 6)}${this.policyCount++}`,
+      `${this.bucket.bucketName.slice(0, 6)}${Math.floor(
+        Math.random() * 1000
+      )}`,
       {
         statements,
       }

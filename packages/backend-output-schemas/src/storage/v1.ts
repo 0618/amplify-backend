@@ -9,8 +9,8 @@ export const amplifyStorageBucketSchema = z.object({
 export const storageOutputSchema = z.object({
   version: z.literal('1'),
   payload: z.object({
-    bucketName: z.string(),
-    storageRegion: z.string(),
+    bucketName: z.string().optional(),
+    storageRegion: z.string().optional(),
     friendlyName: z.string().optional(),
     allBuckets: z.array(amplifyStorageBucketSchema).optional(),
   }),

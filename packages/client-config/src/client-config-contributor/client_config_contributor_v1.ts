@@ -229,8 +229,8 @@ export class StorageClientConfigContributor implements ClientConfigContributor {
     const config: Partial<clientConfigTypesV1.AWSAmplifyBackendOutputs> = {};
 
     config.storage = {
-      aws_region: storageRegion,
-      bucket_name: bucketName,
+      aws_region: storageRegion || 'us-east-1',
+      bucket_name: bucketName || 'multi-bucket-poc',
       ...(friendlyName && { friendly_name: friendlyName }),
       ...(allBuckets && { all_buckets: allBuckets }),
     };

@@ -154,7 +154,7 @@ export class AmplifyStorage
       version: '1',
       payload: {
         // storageRegion: Stack.of(this).region,
-        // bucketName: this.resources.bucket.bucketName,
+        bucketName: this.resources.bucket.bucketName,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any,
     });

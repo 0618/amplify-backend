@@ -232,7 +232,16 @@ export class StorageClientConfigContributor implements ClientConfigContributor {
       aws_region: storageRegion || 'us-east-1',
       bucket_name: bucketName || 'multi-bucket-poc',
       ...(friendlyName && { friendly_name: friendlyName }),
-      ...(allBuckets && { all_buckets: allBuckets }),
+      ...(allBuckets && {
+        all_buckets: [
+          {
+            bucket_name: bucketName || 'multi-bucket-poc',
+            friendly_name: friendlyName || 'multi-bucket-poc',
+            /** TODO: add isDefault */
+          },
+          ...allBuckets,
+        ],
+      }),
     };
 
     return config;

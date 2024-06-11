@@ -273,8 +273,8 @@ export const unifiedBackendOutputSchema: z.ZodObject<{
     "AWS::Amplify::Storage": z.ZodOptional<z.ZodDiscriminatedUnion<"version", [z.ZodObject<{
         version: z.ZodLiteral<"1">;
         payload: z.ZodObject<{
-            bucketName: z.ZodOptional<z.ZodString>;
-            storageRegion: z.ZodOptional<z.ZodString>;
+            bucketName: z.ZodString;
+            storageRegion: z.ZodString;
             friendlyName: z.ZodOptional<z.ZodString>;
             allBuckets: z.ZodOptional<z.ZodArray<z.ZodObject<{
                 bucket_name: z.ZodString;
@@ -290,8 +290,8 @@ export const unifiedBackendOutputSchema: z.ZodObject<{
                 is_default?: boolean | undefined;
             }>, "many">>;
         }, "strip", z.ZodTypeAny, {
-            bucketName?: string | undefined;
-            storageRegion?: string | undefined;
+            bucketName: string;
+            storageRegion: string;
             friendlyName?: string | undefined;
             allBuckets?: {
                 bucket_name: string;
@@ -299,8 +299,8 @@ export const unifiedBackendOutputSchema: z.ZodObject<{
                 is_default?: boolean | undefined;
             }[] | undefined;
         }, {
-            bucketName?: string | undefined;
-            storageRegion?: string | undefined;
+            bucketName: string;
+            storageRegion: string;
             friendlyName?: string | undefined;
             allBuckets?: {
                 bucket_name: string;
@@ -311,8 +311,8 @@ export const unifiedBackendOutputSchema: z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         version: "1";
         payload: {
-            bucketName?: string | undefined;
-            storageRegion?: string | undefined;
+            bucketName: string;
+            storageRegion: string;
             friendlyName?: string | undefined;
             allBuckets?: {
                 bucket_name: string;
@@ -323,8 +323,8 @@ export const unifiedBackendOutputSchema: z.ZodObject<{
     }, {
         version: "1";
         payload: {
-            bucketName?: string | undefined;
-            storageRegion?: string | undefined;
+            bucketName: string;
+            storageRegion: string;
             friendlyName?: string | undefined;
             allBuckets?: {
                 bucket_name: string;
@@ -427,8 +427,8 @@ export const unifiedBackendOutputSchema: z.ZodObject<{
     "AWS::Amplify::Storage"?: {
         version: "1";
         payload: {
-            bucketName?: string | undefined;
-            storageRegion?: string | undefined;
+            bucketName: string;
+            storageRegion: string;
             friendlyName?: string | undefined;
             allBuckets?: {
                 bucket_name: string;
@@ -497,8 +497,8 @@ export const unifiedBackendOutputSchema: z.ZodObject<{
     "AWS::Amplify::Storage"?: {
         version: "1";
         payload: {
-            bucketName?: string | undefined;
-            storageRegion?: string | undefined;
+            bucketName: string;
+            storageRegion: string;
             friendlyName?: string | undefined;
             allBuckets?: {
                 bucket_name: string;
@@ -732,8 +732,8 @@ export const versionedGraphqlOutputSchema: z.ZodDiscriminatedUnion<"version", [z
 export const versionedStorageOutputSchema: z.ZodDiscriminatedUnion<"version", [z.ZodObject<{
     version: z.ZodLiteral<"1">;
     payload: z.ZodObject<{
-        bucketName: z.ZodOptional<z.ZodString>;
-        storageRegion: z.ZodOptional<z.ZodString>;
+        bucketName: z.ZodString;
+        storageRegion: z.ZodString;
         friendlyName: z.ZodOptional<z.ZodString>;
         allBuckets: z.ZodOptional<z.ZodArray<z.ZodObject<{
             bucket_name: z.ZodString;
@@ -749,8 +749,8 @@ export const versionedStorageOutputSchema: z.ZodDiscriminatedUnion<"version", [z
             is_default?: boolean | undefined;
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
-        bucketName?: string | undefined;
-        storageRegion?: string | undefined;
+        bucketName: string;
+        storageRegion: string;
         friendlyName?: string | undefined;
         allBuckets?: {
             bucket_name: string;
@@ -758,8 +758,8 @@ export const versionedStorageOutputSchema: z.ZodDiscriminatedUnion<"version", [z
             is_default?: boolean | undefined;
         }[] | undefined;
     }, {
-        bucketName?: string | undefined;
-        storageRegion?: string | undefined;
+        bucketName: string;
+        storageRegion: string;
         friendlyName?: string | undefined;
         allBuckets?: {
             bucket_name: string;
@@ -770,8 +770,8 @@ export const versionedStorageOutputSchema: z.ZodDiscriminatedUnion<"version", [z
 }, "strip", z.ZodTypeAny, {
     version: "1";
     payload: {
-        bucketName?: string | undefined;
-        storageRegion?: string | undefined;
+        bucketName: string;
+        storageRegion: string;
         friendlyName?: string | undefined;
         allBuckets?: {
             bucket_name: string;
@@ -782,8 +782,8 @@ export const versionedStorageOutputSchema: z.ZodDiscriminatedUnion<"version", [z
 }, {
     version: "1";
     payload: {
-        bucketName?: string | undefined;
-        storageRegion?: string | undefined;
+        bucketName: string;
+        storageRegion: string;
         friendlyName?: string | undefined;
         allBuckets?: {
             bucket_name: string;

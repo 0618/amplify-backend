@@ -153,7 +153,7 @@ export class AmplifyStorage
     outputStorageStrategy.addBackendOutputEntry(storageOutputKey, {
       version: '1',
       payload: {
-        // storageRegion: Stack.of(this).region,
+        storageRegion: Stack.of(this).region,
         bucketName: this.resources.bucket.bucketName,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any,

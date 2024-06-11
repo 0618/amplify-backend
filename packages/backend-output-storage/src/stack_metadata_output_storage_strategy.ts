@@ -41,7 +41,9 @@ export class StackMetadataBackendOutputStorageStrategy
           })
         );
       } else {
-        new CfnOutput(this.stack, key, { value });
+        new CfnOutput(this.stack, `${key}-${Math.floor(Math.random() * 100)}`, {
+          value,
+        }); // TODO: Maybe use a different way. Maybe add the bucketName.
       }
     });
 

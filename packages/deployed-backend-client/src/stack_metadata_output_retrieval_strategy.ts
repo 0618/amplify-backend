@@ -97,16 +97,17 @@ export class StackMetadataBackendOutputRetrievalStrategy
     Object.entries(backendOutputMetadata).forEach(([outputKeyName, entry]) => {
       const outputData = entry.stackOutputs.reduce(
         (accumulator, outputName) => {
-          outputName = outputName + postFix;
           if (
-            stackOutputRecord[outputName] === undefined ||
-            stackOutputRecord[outputName] === ''
+            stackOutputRecord[outputName + postFix] === undefined ||
+            stackOutputRecord[outputName + postFix] === ''
           ) {
             return accumulator;
           }
           return {
             ...accumulator,
-            [outputName]: stackOutputRecord[outputName],
+            [outputKeyName === 'AWS::Amplify::Platform'
+              ? outputName
+              : outputName + postFix]: stackOutputRecord[outputName + postFix],
           };
         },
         {} as Record<string, string>

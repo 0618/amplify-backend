@@ -89,7 +89,7 @@ export type BackendOutputRetrievalStrategy = {
 
 // @public
 export type BackendOutputStorageStrategy<T extends StorageOutputEntry> = {
-    addBackendOutputEntry: (keyName: string, backendOutputEntry: T) => void;
+    addBackendOutputEntry: (keyName: string, backendOutputEntry: T, name?: string) => void;
     appendToBackendOutputList: (keyName: string, backendOutputEntry: T) => void;
 };
 

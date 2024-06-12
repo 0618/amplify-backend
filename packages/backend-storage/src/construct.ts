@@ -122,7 +122,7 @@ export class AmplifyStorage
       },
     };
 
-    this.storeOutput(props.outputStorageStrategy);
+    this.storeOutput(props.outputStorageStrategy, props.name);
 
     new AttributionMetadataStorage().storeAttributionMetadata(
       Stack.of(this),
@@ -148,15 +148,20 @@ export class AmplifyStorage
   private storeOutput = (
     outputStorageStrategy: BackendOutputStorageStrategy<StorageOutput> = new StackMetadataBackendOutputStorageStrategy(
       Stack.of(this)
-    )
+    ),
+    name: string
   ): void => {
-    outputStorageStrategy.addBackendOutputEntry(storageOutputKey, {
-      version: '1',
-      payload: {
-        storageRegion: Stack.of(this).region,
-        bucketName: this.resources.bucket.bucketName,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any,
-    });
+    outputStorageStrategy.addBackendOutputEntry(
+      storageOutputKey,
+      {
+        version: '1',
+        payload: {
+          storageRegion: Stack.of(this).region,
+          bucketName: this.resources.bucket.bucketName,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any,
+      },
+      name
+    );
   };
 }

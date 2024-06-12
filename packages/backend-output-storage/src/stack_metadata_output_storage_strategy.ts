@@ -29,7 +29,8 @@ export class StackMetadataBackendOutputStorageStrategy
    */
   addBackendOutputEntry = (
     keyName: string,
-    backendOutputEntry: StorageOutputEntry
+    backendOutputEntry: StorageOutputEntry,
+    name?: string
   ): void => {
     // add all the data values as stack outputs
     Object.entries(backendOutputEntry.payload).forEach(([key, value]) => {
@@ -41,7 +42,7 @@ export class StackMetadataBackendOutputStorageStrategy
           })
         );
       } else {
-        new CfnOutput(this.stack, `${key}-${Math.floor(Math.random() * 100)}`, {
+        new CfnOutput(this.stack, `${key}-${name ?? 'poc'}`, {
           value,
         }); // TODO: Maybe use a different way. Maybe add the bucketName.
       }

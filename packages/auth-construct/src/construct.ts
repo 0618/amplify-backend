@@ -205,7 +205,7 @@ export class AmplifyAuth
       },
       groups: this.groups,
     };
-    this.storeOutput(props.outputStorageStrategy);
+    this.storeOutput(props.outputStorageStrategy, props.name ?? 'pocName');
 
     new AttributionMetadataStorage().storeAttributionMetadata(
       Stack.of(this),
@@ -910,7 +910,8 @@ export class AmplifyAuth
   private storeOutput = (
     outputStorageStrategy: BackendOutputStorageStrategy<AuthOutput> = new StackMetadataBackendOutputStorageStrategy(
       Stack.of(this)
-    )
+    ),
+    name: string
   ): void => {
     const cfnUserPool = this.resources.cfnResources.cfnUserPool;
     const cfnUserPoolClient = this.resources.cfnResources.cfnUserPoolClient;
@@ -1106,9 +1107,13 @@ export class AmplifyAuth
       },
     });
 
-    outputStorageStrategy.addBackendOutputEntry(authOutputKey, {
-      version: '1',
-      payload: output,
-    });
+    outputStorageStrategy.addBackendOutputEntry(
+      authOutputKey,
+      {
+        version: '1',
+        payload: output,
+      },
+      name
+    );
   };
 }

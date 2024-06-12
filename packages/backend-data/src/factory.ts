@@ -237,7 +237,8 @@ class DataGenerator implements ConstructContainerEntryGenerator {
         apiName: this.name,
         definition: combineCDKSchemas(amplifyGraphqlDefinitions),
         authorizationModes,
-        outputStorageStrategy: this.outputStorageStrategy,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        outputStorageStrategy: this.outputStorageStrategy as any,
         functionNameMap,
         translationBehavior: {
           sandboxModeEnabled,

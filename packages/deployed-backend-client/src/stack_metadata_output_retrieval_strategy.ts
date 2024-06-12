@@ -92,9 +92,12 @@ export class StackMetadataBackendOutputRetrievalStrategy
 
     // now we iterate over the metadata entries and reconstruct the data object based on the stackOutputs that each construct package set
     const result: BackendOutput = {};
+    const { postFix = '' } = stackOutputRecord;
+    delete stackOutputRecord.postFix;
     Object.entries(backendOutputMetadata).forEach(([outputKeyName, entry]) => {
       const outputData = entry.stackOutputs.reduce(
         (accumulator, outputName) => {
+          outputName = outputName + postFix;
           if (
             stackOutputRecord[outputName] === undefined ||
             stackOutputRecord[outputName] === ''

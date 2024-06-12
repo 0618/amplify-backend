@@ -32,6 +32,13 @@ export class StackMetadataBackendOutputStorageStrategy
     backendOutputEntry: StorageOutputEntry,
     name?: string
   ): void => {
+    try {
+      new CfnOutput(this.stack, 'postFix', {
+        value: name ?? 'poc',
+      });
+    } catch (error) {
+      return;
+    }
     // add all the data values as stack outputs
     Object.entries(backendOutputEntry.payload).forEach(([key, value]) => {
       if (Array.isArray(value)) {
@@ -42,7 +49,7 @@ export class StackMetadataBackendOutputStorageStrategy
           })
         );
       } else {
-        new CfnOutput(this.stack, `${key}-${name ?? 'poc'}`, {
+        new CfnOutput(this.stack, `${key}${name ?? 'poc'}`, {
           value,
         }); // TODO: Maybe use a different way. Maybe add the bucketName.
       }

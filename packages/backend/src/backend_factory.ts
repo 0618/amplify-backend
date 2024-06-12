@@ -80,13 +80,17 @@ export class BackendFactory<
     );
 
     const backendId = getBackendIdentifier(stack);
-    outputStorageStrategy.addBackendOutputEntry(platformOutputKey, {
-      version: '1',
-      payload: {
-        deploymentType: backendId.type,
-        region: stack.region,
+    outputStorageStrategy.addBackendOutputEntry(
+      platformOutputKey,
+      {
+        version: '1',
+        payload: {
+          deploymentType: backendId.type,
+          region: stack.region,
+        },
       },
-    });
+      'poc'
+    );
 
     const shouldEnableBranchLinker = backendId.type === 'branch';
 

@@ -1,0 +1,9 @@
+---
+'@aws-amplify/deployed-backend-client': patch
+'@aws-amplify/backend-output-schemas': patch
+'@aws-amplify/backend-output-storage': patch
+'@aws-amplify/backend-storage': patch
+'@aws-amplify/client-config': patch
+---
+
+add allBuckets to outputs

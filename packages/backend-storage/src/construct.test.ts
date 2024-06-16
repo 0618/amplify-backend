@@ -121,7 +121,8 @@ void describe('AmplifyStorage', () => {
 
       const storageConstruct = new AmplifyStorage(stack, 'test', {
         name: 'testName',
-        outputStorageStrategy: storageStrategy,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        outputStorageStrategy: storageStrategy as any,
       });
 
       const expectedBucketName = (

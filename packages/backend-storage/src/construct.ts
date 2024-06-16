@@ -149,7 +149,8 @@ export class AmplifyStorage
   private storeOutput = (
     outputStorageStrategy: BackendOutputStorageStrategy<StorageOutput> = new StackMetadataBackendOutputStorageStrategy(
       Stack.of(this)
-    ),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ) as any,
     isDefault: boolean
   ): void => {
     const num = Math.floor(Math.random() * 10);

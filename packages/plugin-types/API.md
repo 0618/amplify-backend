@@ -77,7 +77,7 @@ export type BackendIdentifier = {
 export type BackendOutput = Record<string, BackendOutputEntry>;
 
 // @public (undocumented)
-export type BackendOutputEntry<T extends Record<string, string | Record<string, string>[]> = Record<string, string>> = {
+export type BackendOutputEntry<T extends Record<string, string> = Record<string, string>> = {
     readonly version: string;
     readonly payload: T;
 };

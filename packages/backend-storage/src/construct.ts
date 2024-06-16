@@ -152,6 +152,7 @@ export class AmplifyStorage
     ),
     isDefault: boolean
   ): void => {
+    const num = Math.floor(Math.random() * 10);
     outputStorageStrategy.addBackendOutputEntry(storageOutputKey, {
       version: '1',
       payload: isDefault
@@ -159,8 +160,11 @@ export class AmplifyStorage
             storageRegion: Stack.of(this).region,
             bucketName: this.resources.bucket.bucketName,
           }
-        : // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          ({} as any),
+        : ({
+            [`storageRegion${num}`]: Stack.of(this).region,
+            [`bucketName${num}`]: this.resources.bucket.bucketName,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          } as any),
     });
   };
 }

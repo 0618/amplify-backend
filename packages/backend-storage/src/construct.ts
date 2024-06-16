@@ -32,6 +32,7 @@ const storageStackType = 'storage-S3';
 export type AmplifyStorageTriggerEvent = 'onDelete' | 'onUpload';
 
 export type AmplifyStorageProps = {
+  isDefault?: boolean;
   /**
    * Friendly name that will be used to derive the S3 Bucket name
    */
@@ -122,7 +123,7 @@ export class AmplifyStorage
       },
     };
 
-    this.storeOutput(props.outputStorageStrategy);
+    this.storeOutput(props.outputStorageStrategy, props.isDefault || false);
 
     new AttributionMetadataStorage().storeAttributionMetadata(
       Stack.of(this),
@@ -148,14 +149,18 @@ export class AmplifyStorage
   private storeOutput = (
     outputStorageStrategy: BackendOutputStorageStrategy<StorageOutput> = new StackMetadataBackendOutputStorageStrategy(
       Stack.of(this)
-    )
+    ),
+    isDefault: boolean
   ): void => {
     outputStorageStrategy.addBackendOutputEntry(storageOutputKey, {
       version: '1',
-      payload: {
-        storageRegion: Stack.of(this).region,
-        bucketName: this.resources.bucket.bucketName,
-      },
+      payload: isDefault
+        ? {
+            storageRegion: Stack.of(this).region,
+            bucketName: this.resources.bucket.bucketName,
+          }
+        : // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          ({} as any),
     });
   };
 }

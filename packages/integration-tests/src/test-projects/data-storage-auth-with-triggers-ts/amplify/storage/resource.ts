@@ -7,6 +7,7 @@ import {
 } from '../function.js';
 
 export const storage = defineStorage({
+  friendlyName: 'testFriendlyName',
   name: 'testName',
   triggers: {
     onDelete,

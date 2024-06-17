@@ -14,7 +14,10 @@ void describe('AmplifyStorage', () => {
   void it('creates a bucket', () => {
     const app = new App();
     const stack = new Stack(app);
-    new AmplifyStorage(stack, 'test', { name: 'testName' });
+    new AmplifyStorage(stack, 'test', {
+      name: 'testName',
+      friendlyName: 'testFriendlyName',
+    });
     const template = Template.fromStack(stack);
     template.resourceCountIs('AWS::S3::Bucket', 1);
   });
@@ -22,7 +25,11 @@ void describe('AmplifyStorage', () => {
   void it('turns versioning on if specified', () => {
     const app = new App();
     const stack = new Stack(app);
-    new AmplifyStorage(stack, 'test', { versioned: true, name: 'testName' });
+    new AmplifyStorage(stack, 'test', {
+      versioned: true,
+      name: 'testName',
+      friendlyName: 'testFriendlyName',
+    });
     const template = Template.fromStack(stack);
     template.resourceCountIs('AWS::S3::Bucket', 1);
     template.hasResourceProperties('AWS::S3::Bucket', {
@@ -33,7 +40,10 @@ void describe('AmplifyStorage', () => {
   void it('stores attribution data in stack', () => {
     const app = new App();
     const stack = new Stack(app);
-    new AmplifyStorage(stack, 'testAuth', { name: 'testName' });
+    new AmplifyStorage(stack, 'testAuth', {
+      name: 'testName',
+      friendlyName: 'testFriendlyName',
+    });
 
     const template = Template.fromStack(stack);
     assert.equal(
@@ -45,7 +55,10 @@ void describe('AmplifyStorage', () => {
   void it('enables cors on the bucket', () => {
     const app = new App();
     const stack = new Stack(app);
-    new AmplifyStorage(stack, 'testAuth', { name: 'testName' });
+    new AmplifyStorage(stack, 'testAuth', {
+      name: 'testName',
+      friendlyName: 'testFriendlyName',
+    });
 
     const template = Template.fromStack(stack);
     template.hasResourceProperties('AWS::S3::Bucket', {
@@ -71,7 +84,10 @@ void describe('AmplifyStorage', () => {
   void it('sets destroy retain policy and auto-delete objects true', () => {
     const app = new App();
     const stack = new Stack(app);
-    new AmplifyStorage(stack, 'testBucketId', { name: 'testName' });
+    new AmplifyStorage(stack, 'testBucketId', {
+      name: 'testName',
+      friendlyName: 'testFriendlyName',
+    });
 
     const template = Template.fromStack(stack);
     const buckets = template.findResources('AWS::S3::Bucket');
@@ -91,7 +107,10 @@ void describe('AmplifyStorage', () => {
   void it('forces SSL', () => {
     const app = new App();
     const stack = new Stack(app);
-    new AmplifyStorage(stack, 'testBucketId', { name: 'testName' });
+    new AmplifyStorage(stack, 'testBucketId', {
+      name: 'testName',
+      friendlyName: 'testFriendlyName',
+    });
 
     const template = Template.fromStack(stack);
 
@@ -120,6 +139,7 @@ void describe('AmplifyStorage', () => {
         };
 
       const storageConstruct = new AmplifyStorage(stack, 'test', {
+        friendlyName: 'testFriendlyName',
         name: 'testName',
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         outputStorageStrategy: storageStrategy as any,
@@ -148,7 +168,10 @@ void describe('AmplifyStorage', () => {
       const app = new App();
       const stack = new Stack(app);
 
-      new AmplifyStorage(stack, 'test', { name: 'testName' });
+      new AmplifyStorage(stack, 'test', {
+        name: 'testName',
+        friendlyName: 'testFriendlyName',
+      });
       const template = Template.fromStack(stack);
       template.templateMatches({
         Metadata: {
@@ -166,7 +189,10 @@ void describe('AmplifyStorage', () => {
       const app = new App();
       const stack = new Stack(app);
 
-      const bucket = new AmplifyStorage(stack, 'test', { name: 'testName' });
+      const bucket = new AmplifyStorage(stack, 'test', {
+        name: 'testName',
+        friendlyName: 'testFriendlyName',
+      });
       bucket.resources.cfnResources.cfnBucket.accelerateConfiguration = {
         accelerationStatus: 'Enabled',
       };

@@ -64,7 +64,7 @@ void describe('StorageGenerator', () => {
     });
     void it('returns AmplifyStorage instance', () => {
       const storageGenerator = new StorageContainerEntryGenerator(
-        { name: 'testName' },
+        { name: 'testName', friendlyName: 'testFriendlyName' },
         getInstanceProps,
         new StorageAccessOrchestratorFactory()
       );
@@ -80,6 +80,7 @@ void describe('StorageGenerator', () => {
       const storageGenerator = new StorageContainerEntryGenerator(
         {
           name: 'coolBucketName',
+          friendlyName: 'testFriendlyName',
         },
         getInstanceProps,
         new StorageAccessOrchestratorFactory()
@@ -115,6 +116,7 @@ void describe('StorageGenerator', () => {
       const storageGenerator = new StorageContainerEntryGenerator(
         {
           name: 'testName',
+          friendlyName: 'testFriendlyName',
           access: accessRulesCallback,
         },
         getInstanceProps,
@@ -158,6 +160,7 @@ void describe('StorageGenerator', () => {
       const storageGenerator = new StorageContainerEntryGenerator(
         {
           name: 'testName',
+          friendlyName: 'testFriendlyName',
           triggers: {
             onUpload: stubFunctionFactory,
             onDelete: stubFunctionFactory,

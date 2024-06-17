@@ -273,14 +273,17 @@ export const unifiedBackendOutputSchema: z.ZodObject<{
     "AWS::Amplify::Storage": z.ZodOptional<z.ZodDiscriminatedUnion<"version", [z.ZodObject<{
         version: z.ZodLiteral<"1">;
         payload: z.ZodObject<{
+            friendlyName: z.ZodString;
             bucketName: z.ZodString;
             storageRegion: z.ZodString;
             allBuckets: z.ZodOptional<z.ZodArray<z.ZodRecord<z.ZodString, z.ZodString>, "many">>;
         }, "strip", z.ZodTypeAny, {
+            friendlyName: string;
             bucketName: string;
             storageRegion: string;
             allBuckets?: Record<string, string>[] | undefined;
         }, {
+            friendlyName: string;
             bucketName: string;
             storageRegion: string;
             allBuckets?: Record<string, string>[] | undefined;
@@ -288,6 +291,7 @@ export const unifiedBackendOutputSchema: z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         version: "1";
         payload: {
+            friendlyName: string;
             bucketName: string;
             storageRegion: string;
             allBuckets?: Record<string, string>[] | undefined;
@@ -295,6 +299,7 @@ export const unifiedBackendOutputSchema: z.ZodObject<{
     }, {
         version: "1";
         payload: {
+            friendlyName: string;
             bucketName: string;
             storageRegion: string;
             allBuckets?: Record<string, string>[] | undefined;
@@ -394,6 +399,7 @@ export const unifiedBackendOutputSchema: z.ZodObject<{
     "AWS::Amplify::Storage"?: {
         version: "1";
         payload: {
+            friendlyName: string;
             bucketName: string;
             storageRegion: string;
             allBuckets?: Record<string, string>[] | undefined;
@@ -459,6 +465,7 @@ export const unifiedBackendOutputSchema: z.ZodObject<{
     "AWS::Amplify::Storage"?: {
         version: "1";
         payload: {
+            friendlyName: string;
             bucketName: string;
             storageRegion: string;
             allBuckets?: Record<string, string>[] | undefined;
@@ -689,14 +696,17 @@ export const versionedGraphqlOutputSchema: z.ZodDiscriminatedUnion<"version", [z
 export const versionedStorageOutputSchema: z.ZodDiscriminatedUnion<"version", [z.ZodObject<{
     version: z.ZodLiteral<"1">;
     payload: z.ZodObject<{
+        friendlyName: z.ZodString;
         bucketName: z.ZodString;
         storageRegion: z.ZodString;
         allBuckets: z.ZodOptional<z.ZodArray<z.ZodRecord<z.ZodString, z.ZodString>, "many">>;
     }, "strip", z.ZodTypeAny, {
+        friendlyName: string;
         bucketName: string;
         storageRegion: string;
         allBuckets?: Record<string, string>[] | undefined;
     }, {
+        friendlyName: string;
         bucketName: string;
         storageRegion: string;
         allBuckets?: Record<string, string>[] | undefined;
@@ -704,6 +714,7 @@ export const versionedStorageOutputSchema: z.ZodDiscriminatedUnion<"version", [z
 }, "strip", z.ZodTypeAny, {
     version: "1";
     payload: {
+        friendlyName: string;
         bucketName: string;
         storageRegion: string;
         allBuckets?: Record<string, string>[] | undefined;
@@ -711,6 +722,7 @@ export const versionedStorageOutputSchema: z.ZodDiscriminatedUnion<"version", [z
 }, {
     version: "1";
     payload: {
+        friendlyName: string;
         bucketName: string;
         storageRegion: string;
         allBuckets?: Record<string, string>[] | undefined;

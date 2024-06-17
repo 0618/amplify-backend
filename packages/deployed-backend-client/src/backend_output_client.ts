@@ -28,16 +28,24 @@ export class DefaultBackendOutputClient implements BackendOutputClient {
       Object.keys(output['AWS::Amplify::Storage'].payload).length >= 4
     ) {
       const payload = output['AWS::Amplify::Storage'].payload;
-      const allBuckets: { bucketName: string; storageRegion: string }[] = [];
+      const allBuckets: {
+        bucketName: string;
+        storageRegion: string;
+        friendlyName: string;
+      }[] = [];
       Object.keys(payload)
         .filter((key) => key.startsWith('bucketName'))
         .forEach((key) => {
           const postfix = key.replace('bucketName', '');
           const bucketName = payload[`bucketName${postfix}`];
           const storageRegion = payload[`storageRegion${postfix}`];
-          allBuckets.push({ bucketName, storageRegion });
-          delete payload[bucketName];
-          delete payload[storageRegion];
+          const friendlyName = payload[`friendlyName${postfix}`];
+          allBuckets.push({ bucketName, storageRegion, friendlyName });
+          if (postfix) {
+            delete payload[bucketName];
+            delete payload[storageRegion];
+            delete payload[friendlyName];
+          }
         });
 
       return unifiedBackendOutputSchema.parse({

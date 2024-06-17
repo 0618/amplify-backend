@@ -41,7 +41,10 @@ void describe('AmplifyStorageFactory', () => {
   let getInstanceProps: ConstructFactoryGetInstanceProps;
 
   beforeEach(() => {
-    storageFactory = defineStorage({ name: 'testName' });
+    storageFactory = defineStorage({
+      name: 'testName',
+      friendlyName: 'testFriendlyName',
+    });
     const stack = createStackAndSetContext();
 
     constructContainer = new ConstructContainerStub(
@@ -125,7 +128,10 @@ void describe('AmplifyStorageFactory', () => {
       },
     };
 
-    const storageFactory = defineStorage({ name: '!$87++|' });
+    const storageFactory = defineStorage({
+      name: '!$87++|',
+      friendlyName: 'testFriendlyName',
+    });
     assert.throws(
       () =>
         storageFactory.getInstance({
